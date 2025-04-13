@@ -7,8 +7,6 @@ extends Sprite2D
 @export var interact_action: String = "interact_p1"
 @export var scroll_axis: int = JOY_AXIS_RIGHT_Y
 
-#var region_rect := Rect2()
-
 func _ready():
 	var region_node = get_node(region_node_path) as Control
 	region_rect = region_node.get_global_rect()
@@ -49,8 +47,3 @@ func _handle_interaction():
 			if under is BaseButton:
 				under.emit_signal("pressed")
 				print(player_id, " ", under)
-			#elif under is ScrollContainer:
-				#print(under)
-				#var scroll = Input.get_joy_axis(player_id, scroll_axis)
-				#if abs(scroll) > 0.1:
-					#under.scroll_vertical += scroll * 20  # adjust scroll speed if needed
