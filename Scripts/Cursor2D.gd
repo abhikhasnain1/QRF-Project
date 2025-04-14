@@ -46,14 +46,6 @@ func get_control_under_cursor() -> Control:
 			return node
 	return null
 
-#func _handle_interaction():
-	#if Input.is_action_just_pressed(interact_action):
-		#var under = get_control_under_cursor()
-		#if under:
-			#if under is BaseButton:
-				#under.emit_signal("pressed")
-				#print(player_id, " ", under)
-
 func _handle_interaction():
 	if Input.is_action_just_pressed(interact_action):
 		var under = get_control_under_cursor()
@@ -64,3 +56,11 @@ func _handle_interaction():
 			else:
 				if under.has_method("on_cursor_hover"):
 					under.on_cursor_hover(self)  # optional: show denied feedback
+
+# Refactored _handle_interaction() to be used later:
+
+#func _handle_interaction():
+	#if Input.is_action_just_pressed(interact_action):
+		#var under = get_control_under_cursor()
+		#if under and under.has_method("on_cursor_interact"):
+			#under.on_cursor_interact(self)
