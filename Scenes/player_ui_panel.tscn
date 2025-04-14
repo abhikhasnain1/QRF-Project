@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfkb2ynjj34r3"]
+[gd_scene load_steps=3 format=3 uid="uid://dfkb2ynjj34r3"]
+
+[ext_resource type="Script" uid="uid://c5gcl2oe8oya4" path="res://Scripts/PlayerUIPanel.gd" id="1_0lxf1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvw1i"]
 bg_color = Color(0.647264, 0.768593, 0.912448, 1)
@@ -11,6 +13,7 @@ offset_left = 24.0
 offset_top = 21.0
 offset_right = 524.0
 offset_bottom = 621.0
+script = ExtResource("1_0lxf1")
 metadata/_edit_vertical_guides_ = [1153.0]
 
 [node name="Panel" type="Panel" parent="."]
