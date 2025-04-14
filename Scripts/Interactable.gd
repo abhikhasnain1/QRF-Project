@@ -1,5 +1,5 @@
 # Interactable.gd
-extends Node
+extends Control
 class_name Interactable
 
 @export var owner_player_id: int = -1  # -1 = shared

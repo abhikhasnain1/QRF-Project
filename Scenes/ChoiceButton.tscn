@@ -1,9 +1,12 @@
-[gd_scene format=3 uid="uid://csm3owwvjtjpl"]
+[gd_scene load_steps=2 format=3 uid="uid://csm3owwvjtjpl"]
+
+[ext_resource type="Script" uid="uid://db1okhh7df8wj" path="res://Scripts/ChoiceButton.gd" id="1_6ukqj"]
 
 [node name="ChoiceButton" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 size_flags_vertical = 3
+script = ExtResource("1_6ukqj")
 
 [node name="Background" type="NinePatchRect" parent="."]
 custom_minimum_size = Vector2(70, 50)
