@@ -16,6 +16,7 @@ func _ready():
 func _process(delta):
 	_move_cursor(delta)
 	_handle_scroll()
+	_handle_hover()
 	_handle_interaction()
 
 func _move_cursor(delta):
@@ -34,16 +35,32 @@ func _handle_scroll():
 		if abs(scroll_input) > 0.1:  # deadzone threshold
 			under.scroll_vertical += scroll_input * 20.0
 
+func _handle_hover():
+	var under = get_control_under_cursor()
+	if under and under.has_method("on_cursor_hover"):
+		under.on_cursor_hover(self)
+		
 func get_control_under_cursor() -> Control:
 	for node in get_tree().get_nodes_in_group("ui_interactable"):
 		if node is Control and node.get_global_rect().has_point(global_position):
 			return node
 	return null
 
+#func _handle_interaction():
+	#if Input.is_action_just_pressed(interact_action):
+		#var under = get_control_under_cursor()
+		#if under:
+			#if under is BaseButton:
+				#under.emit_signal("pressed")
+				#print(player_id, " ", under)
+
 func _handle_interaction():
 	if Input.is_action_just_pressed(interact_action):
 		var under = get_control_under_cursor()
-		if under:
-			if under is BaseButton:
-				under.emit_signal("pressed")
-				print(player_id, " ", under)
+		if under and under.has_method("on_cursor_interact"):
+			var owner_id = under.get("owner_player_id") if under.has_method("get") and under.has_property("owner_player_id") else -1
+			if owner_id == -1 or owner_id == player_id:
+				under.on_cursor_interact(self)
+			else:
+				if under.has_method("on_cursor_hover"):
+					under.on_cursor_hover(self)  # optional: show denied feedback
