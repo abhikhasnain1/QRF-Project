@@ -1,9 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfkb2ynjj34r3"]
+[gd_scene load_steps=6 format=3 uid="uid://dfkb2ynjj34r3"]
 
 [ext_resource type="Script" uid="uid://c5gcl2oe8oya4" path="res://Scripts/PlayerUIPanel.gd" id="1_0lxf1"]
+[ext_resource type="PackedScene" uid="uid://csm3owwvjtjpl" path="res://Scenes/ChoiceButton.tscn" id="2_3tquo"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvw1i"]
-bg_color = Color(0.647264, 0.768593, 0.912448, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hqfgv"]
+
+[sub_resource type="SystemFont" id="SystemFont_hqfgv"]
+font_names = PackedStringArray("SimSun")
+subpixel_positioning = 0
+
+[sub_resource type="FontVariation" id="FontVariation_eavkd"]
+base_font = SubResource("SystemFont_hqfgv")
+variation_opentype = {
+2003265652: 400
+}
 
 [node name="PlayerUIPanel" type="Control"]
 custom_minimum_size = Vector2(500, 600)
@@ -17,42 +27,56 @@ script = ExtResource("1_0lxf1")
 metadata/_edit_vertical_guides_ = [1153.0]
 
 [node name="Panel" type="Panel" parent="."]
-layout_mode = 2
-offset_left = 117.0
-offset_top = 87.0
-offset_right = 317.0
-offset_bottom = 297.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_lvw1i")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -9.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_hqfgv")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-offset_left = 117.0
-offset_top = 92.0
-offset_right = 317.0
-offset_bottom = 465.0
+offset_left = 57.0
+offset_top = 8.0
+offset_right = 357.0
+offset_bottom = 608.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 10
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" groups=["ui_interactable"]]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(300, 200)
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/ScrollContainer" groups=["ui_interactable"]]
-custom_minimum_size = Vector2(200, 250)
+custom_minimum_size = Vector2(300, 200)
 layout_mode = 2
-text = "The second season of the American post-apocalyptic drama television series The Last of Us is set to premiere on HBO on April 13, 2025. Based on the video game franchise developed by Naughty Dog, the series is set twenty years into a pandemic caused by a mass fungal infection, which causes its hosts to transform into zombie-like creatures and collapses society."
+theme_override_fonts/normal_font = SubResource("FontVariation_eavkd")
 
-[node name="Button" type="Button" parent="VBoxContainer" groups=["ui_interactable"]]
+[node name="CurrentTextLabel" type="RichTextLabel" parent="VBoxContainer" groups=["ui_interactable"]]
+clip_contents = false
+custom_minimum_size = Vector2(300, 150)
 layout_mode = 2
-text = "Choice 1"
+size_flags_vertical = 3
 
-[node name="Button2" type="Button" parent="VBoxContainer" groups=["ui_interactable"]]
+[node name="ChoiceContainer" type="VBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
-text = "Choice 2"
 
-[node name="Button3" type="Button" parent="VBoxContainer" groups=["ui_interactable"]]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
-text = "Choice 3
-"
+theme_override_constants/margin_right = 150
+
+[node name="ContinueButton" parent="VBoxContainer/MarginContainer" instance=ExtResource("2_3tquo")]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 3
+
+[node name="WaitingLabel" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Waiting for player...."

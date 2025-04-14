@@ -14,6 +14,8 @@ func _ready():
 	global_position = region_rect.position + region_rect.size * 0.5
 
 func _process(delta):
+	var group_members = get_tree().get_nodes_in_group("ui_interactable")
+	#print("Found interactables:", group_members.size())
 	_move_cursor(delta)
 	_handle_scroll()
 	_handle_hover()
@@ -41,20 +43,43 @@ func _handle_hover():
 		under.on_cursor_hover(self)
 		
 func get_control_under_cursor() -> Control:
+	#var ui_pos = get_viewport().get_mouse_position()  # use screen-space position
+	#var found = null
+	#for node in get_tree().get_nodes_in_group("ui_interactable"):
+		#if node is Control:
+			#var rect = node.get_global_rect()
+			#if rect.has_point(ui_pos):
+				#print("✅ HIT:", node.name)
+				#found = node
+	#return found
+
+	#print("💡 Checking for interactables...")
 	for node in get_tree().get_nodes_in_group("ui_interactable"):
 		if node is Control and node.get_global_rect().has_point(global_position):
+			#print("Checking:", node.name, node.get_global_rect(), "vs cursor:", global_position)
 			return node
+			print(node)
 	return null
+	
+	
+	
 
 func _handle_interaction():
 	if Input.is_action_just_pressed(interact_action):
+		print(player_id, interact_action)
 		var under = get_control_under_cursor()
 		if under and under.has_method("on_cursor_interact"):
-			var owner_id = under.get("owner_player_id") if under.has_method("get") and under.has_property("owner_player_id") else -1
+			print(under)
+			var owner_id := -1
+			if "owner_player_id" in under:
+				owner_id = under.get("owner_player_id")
+			#var owner_id = under.get("owner_player_id") if under.has_method("get") and under.has_method("owner_player_id") else -1
 			if owner_id == -1 or owner_id == player_id:
 				under.on_cursor_interact(self)
+				print(under)
 			else:
 				if under.has_method("on_cursor_hover"):
+					print(under)
 					under.on_cursor_hover(self)  # optional: show denied feedback
 
 # Refactored _handle_interaction() to be used later:

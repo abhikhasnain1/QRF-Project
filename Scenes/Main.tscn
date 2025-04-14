@@ -1,37 +1,55 @@
-[gd_scene load_steps=5 format=3 uid="uid://dutgwuytq52jr"]
+[gd_scene load_steps=8 format=3 uid="uid://dutgwuytq52jr"]
 
 [ext_resource type="PackedScene" uid="uid://dfkb2ynjj34r3" path="res://Scenes/player_ui_panel.tscn" id="1_kln2b"]
 [ext_resource type="Texture2D" uid="uid://d2bhqj4du3fc0" path="res://Assets/Icons/radar.png" id="2_rgh2o"]
 [ext_resource type="Script" uid="uid://b281bfetjs3c" path="res://Scripts/Cursor2D.gd" id="3_pbw6q"]
+[ext_resource type="Script" uid="uid://cy4ccwh7fmayv" path="res://Scripts/DialogueSystem.gd" id="3_rgh2o"]
+[ext_resource type="Script" uid="uid://vtpp6wiad1fo" path="res://Scripts/TriggerDispatcher.gd" id="4_pbw6q"]
+[ext_resource type="PackedScene" uid="uid://daua4mdpnx27o" path="res://Scenes/SharedControlPanel.tscn" id="5_pbw6q"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cm0pq"]
-bg_color = Color(0.91664, 0.91664, 0.91664, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kln2b"]
+bg_color = Color(0.239586, 0.171708, 0.552757, 1)
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Panel" type="Panel" parent="."]
 offset_right = 1153.0
 offset_bottom = 650.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_cm0pq")
+theme_override_styles/panel = SubResource("StyleBoxFlat_kln2b")
 
 [node name="PlayerUIPanel" parent="." instance=ExtResource("1_kln2b")]
 
 [node name="Cursor1" type="Sprite2D" parent="PlayerUIPanel"]
-position = Vector2(221, 479)
-scale = Vector2(0.0585938, 0.0585938)
+z_index = 5
+position = Vector2(181, 262)
+scale = Vector2(0.101563, 0.101563)
 texture = ExtResource("2_rgh2o")
 script = ExtResource("3_pbw6q")
 
 [node name="PlayerUIPanel2" parent="." instance=ExtResource("1_kln2b")]
-offset_left = 620.0
-offset_top = 15.0
-offset_right = 1120.0
-offset_bottom = 615.0
+offset_left = 603.0
+offset_top = 24.0
+offset_right = 1103.0
+offset_bottom = 624.0
+player_id = 1
 
 [node name="Cursor2" type="Sprite2D" parent="PlayerUIPanel2"]
-position = Vector2(193, 475)
-scale = Vector2(0.0566406, 0.0566406)
+z_index = 5
+position = Vector2(253, 245)
+scale = Vector2(0.0859375, 0.0859375)
 texture = ExtResource("2_rgh2o")
 script = ExtResource("3_pbw6q")
 player_id = 1
 interact_action = "interact_p2"
+
+[node name="DialogueSystem" type="Node" parent="."]
+script = ExtResource("3_rgh2o")
+
+[node name="TriggerDispatcher" type="Node" parent="."]
+script = ExtResource("4_pbw6q")
+
+[node name="SharedControlPanel" parent="." instance=ExtResource("5_pbw6q")]
+offset_left = 458.0
+offset_top = 64.0
+offset_right = 498.0
+offset_bottom = 104.0

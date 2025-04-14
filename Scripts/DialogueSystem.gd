@@ -5,20 +5,22 @@ class_name DialogueSystem
 var dialogue_data: Dictionary = {}
 var current_node_id: String = "start"
 var _next_node_id: String = ""
+var waiting_for_sync: bool = false
+var confirmed_players: Dictionary = {}
 signal node_loaded(node_id)
 signal trigger_fired(trigger_name)
 
 # Player UI node references (assign in editor or code)
-@export_node_path var player_ui_1_path: NodePath
-@export_node_path var player_ui_2_path: NodePath
+@export_node_path var player_ui_1_path: NodePath = "../PlayerUIPanel"
+@export_node_path var player_ui_2_path: NodePath = "../PlayerUIPanel2"
 @onready var player_ui_1 = get_node(player_ui_1_path)
 @onready var player_ui_2 = get_node(player_ui_2_path)
-@export var trigger_dispatcher_path: NodePath
+@export var trigger_dispatcher_path: NodePath = "../TriggerDispatcher"
 @onready var trigger_dispatcher = get_node(trigger_dispatcher_path)
 
 func _ready():
-	load_dialogue("res://dialogue/sample_narrative.json")
-	load_node("start")
+	load_dialogue("res://Dialogue/sample_narrative.json")
+	call_deferred("load_node", "start")
 	
 	# Connect player UI signals
 	player_ui_1.continue_requested.connect(_on_continue_requested.bind(0))

@@ -1,31 +1,63 @@
-[gd_scene load_steps=2 format=3 uid="uid://csm3owwvjtjpl"]
+[gd_scene load_steps=5 format=3 uid="uid://csm3owwvjtjpl"]
 
 [ext_resource type="Script" uid="uid://db1okhh7df8wj" path="res://Scripts/ChoiceButton.gd" id="1_6ukqj"]
+[ext_resource type="Texture2D" uid="uid://d4gy3t775a7lg" path="res://Assets/Backgrounds/ButtonRoundedRefines.svg" id="2_mra46"]
+
+[sub_resource type="Animation" id="Animation_6ukqj"]
+resource_name = "hover"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mra46"]
+_data = {
+&"hover": SubResource("Animation_6ukqj")
+}
 
 [node name="ChoiceButton" type="Control"]
+custom_minimum_size = Vector2(100, 60)
 layout_mode = 3
-anchors_preset = 0
-size_flags_vertical = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_6ukqj")
-triggers = null
+owner_player_id = 0
 
-[node name="Background" type="NinePatchRect" parent="."]
-custom_minimum_size = Vector2(70, 50)
+[node name="Container" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(100, 60)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 70.0
-offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="."]
-custom_minimum_size = Vector2(60, 40)
-layout_mode = 0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 65.0
-offset_bottom = 45.0
+[node name="Background" type="NinePatchRect" parent="Container"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("2_mra46")
+region_rect = Rect2(400, 48, 1120, 984)
+
+[node name="MarginContainer" type="MarginContainer" parent="Container"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="Container/MarginContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_mra46")
+}

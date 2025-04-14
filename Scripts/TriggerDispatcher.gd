@@ -16,7 +16,7 @@ func dispatch(trigger_name: String, player_id := -1):
 			print("Unhandled trigger: ", trigger_name)
 
 func _show_shared_ui(button_name: String):
-	var shared_ui = get_node("/root/Main/SharedControlPanel")  # adjust if needed
+	var shared_ui = get_node("../SharedControlPanel")  # adjust if needed
 	var btn = shared_ui.get_node_or_null(button_name)
 	if btn:
 		btn.visible = true

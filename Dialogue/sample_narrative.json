@@ -1,25 +1,26 @@
 {
   "start": {
-	"text_p1": "Where are we?",
-	"text_p2": "This forest looks unfamiliar...",
+	"text_p1": "This sequence will make the $Sprite node turn red, then shrink, before finally calling Node.queue_free() to free the sprite. Tweeners are executed one after another by default. This behavior can be changed using parallel() and set_parallel().
+
+When a Tweener is created with one of the tween_* methods, a chained method call can be used to tweak the properties of this Tweener. For example, if you want to set a different transition type in the above example, you can use set_trans():",
+	"text_p2": "This place feels strange.",
 	"choices_p1": [
-	  { "text": "Look around.", "next": "look" },
-	  { "text": "Stay quiet.", "next": "wait" }
+	  { "text": "Look around", "next": "look" }
 	],
 	"choices_p2": [
-	  { "text": "Draw weapon.", "next": "draw" },
-	  { "text": "Whisper loudly.", "next": "shout" }
-	]
-  },
-  "look": {
-	"text_p1": "You scan the trees...",
-	"text_p2": "You stay alert.",
-	"sync_point": true,
+	  { "text": "Stay quiet", "next": "quiet" }
+	],
+	"sync_point": false,
 	"triggers": ["reveal_map"]
   },
-  "wait": {
-	"text_p1": "You stay still.",
-	"text_p2": "You wait quietly.",
+  "look": {
+	"text_p1": "You see shadows in the distance.",
+	"text_p2": "You tense up slightly.",
+	"sync_point": true
+  },
+  "quiet": {
+	"text_p1": "You remain silent.",
+	"text_p2": "The silence grows heavier.",
 	"sync_point": true
   }
 }
