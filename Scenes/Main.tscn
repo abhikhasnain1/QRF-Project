@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dutgwuytq52jr"]
 
-[ext_resource type="PackedScene" uid="uid://dfkb2ynjj34r3" path="res://Scenes/player_ui_panel.tscn" id="1_glv2v"]
-[ext_resource type="Texture2D" uid="uid://d2bhqj4du3fc0" path="res://Assets/Icons/radar.png" id="2_r0du0"]
-[ext_resource type="Script" uid="uid://b281bfetjs3c" path="res://Scripts/Cursor2D.gd" id="2_uu6xs"]
+[ext_resource type="PackedScene" uid="uid://dfkb2ynjj34r3" path="res://Scenes/player_ui_panel.tscn" id="1_kln2b"]
+[ext_resource type="Texture2D" uid="uid://d2bhqj4du3fc0" path="res://Assets/Icons/radar.png" id="2_rgh2o"]
+[ext_resource type="Script" uid="uid://b281bfetjs3c" path="res://Scripts/Cursor2D.gd" id="3_pbw6q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cm0pq"]
 bg_color = Color(0.91664, 0.91664, 0.91664, 1)
@@ -14,15 +14,15 @@ offset_right = 1153.0
 offset_bottom = 650.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_cm0pq")
 
-[node name="PlayerUIPanel" parent="." instance=ExtResource("1_glv2v")]
+[node name="PlayerUIPanel" parent="." instance=ExtResource("1_kln2b")]
 
 [node name="Cursor1" type="Sprite2D" parent="PlayerUIPanel"]
 position = Vector2(221, 479)
 scale = Vector2(0.0585938, 0.0585938)
-texture = ExtResource("2_r0du0")
-script = ExtResource("2_uu6xs")
+texture = ExtResource("2_rgh2o")
+script = ExtResource("3_pbw6q")
 
-[node name="PlayerUIPanel2" parent="." instance=ExtResource("1_glv2v")]
+[node name="PlayerUIPanel2" parent="." instance=ExtResource("1_kln2b")]
 offset_left = 620.0
 offset_top = 15.0
 offset_right = 1120.0
@@ -31,7 +31,7 @@ offset_bottom = 615.0
 [node name="Cursor2" type="Sprite2D" parent="PlayerUIPanel2"]
 position = Vector2(193, 475)
 scale = Vector2(0.0566406, 0.0566406)
-texture = ExtResource("2_r0du0")
-script = ExtResource("2_uu6xs")
+texture = ExtResource("2_rgh2o")
+script = ExtResource("3_pbw6q")
 player_id = 1
 interact_action = "interact_p2"
