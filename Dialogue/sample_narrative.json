@@ -1,0 +1,25 @@
+{
+  "start": {
+	"text_p1": "Where are we?",
+	"text_p2": "This forest looks unfamiliar...",
+	"choices_p1": [
+	  { "text": "Look around.", "next": "look" },
+	  { "text": "Stay quiet.", "next": "wait" }
+	],
+	"choices_p2": [
+	  { "text": "Draw weapon.", "next": "draw" },
+	  { "text": "Whisper loudly.", "next": "shout" }
+	]
+  },
+  "look": {
+	"text_p1": "You scan the trees...",
+	"text_p2": "You stay alert.",
+	"sync_point": true,
+	"triggers": ["reveal_map"]
+  },
+  "wait": {
+	"text_p1": "You stay still.",
+	"text_p2": "You wait quietly.",
+	"sync_point": true
+  }
+}
