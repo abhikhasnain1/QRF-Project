@@ -7,6 +7,7 @@ class_name ChoiceButton
 
 # Inherits Interactable behavior
 @export var choice_id: String = ""
+@export var triggers: Array[String] = []
 
 
 signal chosen(choice_id: String, player_id: int)
@@ -26,6 +27,6 @@ func on_cursor_hover(cursor):
 func on_cursor_interact(cursor):
 	if _is_owned_by(cursor.player_id):
 		anim.play("chosen")
-		emit_signal("chosen", choice_id, cursor.player_id)
+		emit_signal("chosen", choice_id, cursor.player_id, triggers)
 	else:
 		anim.play("denied")
