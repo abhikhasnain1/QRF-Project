@@ -13,6 +13,8 @@ signal trigger_fired(trigger_name)
 @export_node_path var player_ui_2_path: NodePath
 @onready var player_ui_1 = get_node(player_ui_1_path)
 @onready var player_ui_2 = get_node(player_ui_2_path)
+@export var trigger_dispatcher_path: NodePath
+@onready var trigger_dispatcher = get_node(trigger_dispatcher_path)
 
 func _ready():
 	load_dialogue("res://dialogue/sample_narrative.json")
@@ -41,6 +43,7 @@ func load_node(node_id: String):
 
 	# Triggers
 	for trigger in node.get("triggers", []):
+		trigger_dispatcher.dispatch(trigger)
 		emit_signal("trigger_fired", trigger)
 
 	emit_signal("node_loaded", node_id)
