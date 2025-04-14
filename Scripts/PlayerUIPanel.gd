@@ -15,6 +15,7 @@ signal continue_requested
 signal choice_selected(next_node_id: String, player_id: int)
 
 func _ready():
+	#pass
 	continue_button.pressed.connect(_on_continue_pressed)
 	waiting_label.visible = false
 

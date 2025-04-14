@@ -7,6 +7,7 @@ layout_mode = 3
 anchors_preset = 0
 size_flags_vertical = 3
 script = ExtResource("1_6ukqj")
+triggers = null
 
 [node name="Background" type="NinePatchRect" parent="."]
 custom_minimum_size = Vector2(70, 50)
