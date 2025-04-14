@@ -1,0 +1,41 @@
+# Co-op Narrative Writer Workflow
+
+## 🎯 Goal
+Build branching, asynchronous dialogue for two players using structured JSON.
+
+---
+
+## ✍️ Writing Rules
+
+- Use one top-level node per dialogue moment.
+- Use unique keys for each node (e.g. `"start_forest"`, `"p1_look_left"`)
+- Provide both `text_p1` and `text_p2` to support independent screens.
+- Branching uses `choices_p1` and `choices_p2` arrays.
+- Each choice has `text` and a `next` target node.
+
+---
+
+## 🧩 Optional Keys
+
+| Key | Purpose |
+|-----|---------|
+| `sync_point` | Forces both players to hit "Continue" before advancing |
+| `triggers` | Animates UI, gives items, opens systems |
+
+---
+
+## 🧪 Trigger Reference
+
+| Trigger | What it does |
+|---------|--------------|
+| `"reveal_map"` | Shows the shared map icon |
+| `"give_item_sword"` | Gives a sword to the triggering player |
+| `"unlock_gate"` | Sets the `gate_unlocked` global flag |
+
+---
+
+## ✅ How to Submit
+
+1. Add new nodes to your JSON file (e.g. `sample_narrative.json`)
+2. Test format with [jsonlint.com](https://jsonlint.com/)
+3. Add a changelog entry like:

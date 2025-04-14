@@ -1,0 +1,15 @@
+
+"example_node_id": {
+  "text_p1": "Player 1 says something here.",
+  "text_p2": "Player 2 responds here.",
+  "choices_p1": [
+	{ "text": "Choice 1 for P1", "next": "next_node_1" },
+	{ "text": "Choice 2 for P1", "next": "next_node_2" }
+  ],
+  "choices_p2": [
+	{ "text": "Choice 1 for P2", "next": "next_node_3" },
+	{ "text": "Choice 2 for P2", "next": "next_node_4" }
+  ],
+  "sync_point": false,
+  "triggers": ["open_inventory", "reveal_map"]
+}
