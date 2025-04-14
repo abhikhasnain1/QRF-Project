@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://csm3owwvjtjpl"]
+
+[node name="ChoiceButton" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_vertical = 3
+
+[node name="Background" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(60, 40)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 65.0
+offset_bottom = 45.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
