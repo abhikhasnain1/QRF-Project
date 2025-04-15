@@ -1,14 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://dutgwuytq52jr"]
+[gd_scene load_steps=12 format=3 uid="uid://dutgwuytq52jr"]
 
 [ext_resource type="PackedScene" uid="uid://dfkb2ynjj34r3" path="res://Scenes/player_ui_panel.tscn" id="1_kln2b"]
-[ext_resource type="Texture2D" uid="uid://d2bhqj4du3fc0" path="res://Assets/Icons/radar.png" id="2_rgh2o"]
+[ext_resource type="Texture2D" uid="uid://d3q6jhb2yya3p" path="res://Assets/Icons/cursor.svg" id="2_v1gob"]
 [ext_resource type="Script" uid="uid://b281bfetjs3c" path="res://Scripts/Cursor2D.gd" id="3_pbw6q"]
 [ext_resource type="Script" uid="uid://cy4ccwh7fmayv" path="res://Scripts/DialogueSystem.gd" id="3_rgh2o"]
 [ext_resource type="Script" uid="uid://vtpp6wiad1fo" path="res://Scripts/TriggerDispatcher.gd" id="4_pbw6q"]
 [ext_resource type="PackedScene" uid="uid://daua4mdpnx27o" path="res://Scenes/SharedControlPanel.tscn" id="5_pbw6q"]
+[ext_resource type="Texture2D" uid="uid://c810e34o0rh3u" path="res://Assets/Backgrounds/Asset 1.png" id="7_jw32o"]
+[ext_resource type="Texture2D" uid="uid://d3kv2l4ci23td" path="res://Assets/Icons/gear.svg" id="8_50glp"]
+[ext_resource type="Texture2D" uid="uid://dd7parn1i21ij" path="res://Assets/Icons/map.svg" id="9_vy5pj"]
+[ext_resource type="Texture2D" uid="uid://452exga7x3og" path="res://Assets/Backgrounds/THE QRF.svg" id="10_bmxlf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kln2b"]
-bg_color = Color(0.239586, 0.171708, 0.552757, 1)
+bg_color = Color(0.916583, 0.918837, 0.991163, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.0728426, 0.0728427, 0.0728426, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [node name="Node2D" type="Node2D"]
 
@@ -18,26 +31,30 @@ offset_bottom = 650.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_kln2b")
 
 [node name="PlayerUIPanel" parent="." instance=ExtResource("1_kln2b")]
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 525.0
+offset_bottom = 625.0
 
 [node name="Cursor1" type="Sprite2D" parent="PlayerUIPanel"]
 z_index = 5
-position = Vector2(181, 262)
-scale = Vector2(0.101563, 0.101563)
-texture = ExtResource("2_rgh2o")
+position = Vector2(194.281, 275.281)
+scale = Vector2(0.654948, 0.654948)
+texture = ExtResource("2_v1gob")
 script = ExtResource("3_pbw6q")
 
 [node name="PlayerUIPanel2" parent="." instance=ExtResource("1_kln2b")]
-offset_left = 603.0
-offset_top = 24.0
-offset_right = 1103.0
-offset_bottom = 624.0
+offset_left = 625.0
+offset_top = 22.0
+offset_right = 1125.0
+offset_bottom = 622.0
 player_id = 1
 
 [node name="Cursor2" type="Sprite2D" parent="PlayerUIPanel2"]
 z_index = 5
 position = Vector2(253, 245)
-scale = Vector2(0.0859375, 0.0859375)
-texture = ExtResource("2_rgh2o")
+scale = Vector2(0.655, 0.655)
+texture = ExtResource("2_v1gob")
 script = ExtResource("3_pbw6q")
 player_id = 1
 interact_action = "interact_p2"
@@ -49,7 +66,43 @@ script = ExtResource("3_rgh2o")
 script = ExtResource("4_pbw6q")
 
 [node name="SharedControlPanel" parent="." instance=ExtResource("5_pbw6q")]
+visible = false
 offset_left = 458.0
 offset_top = 64.0
 offset_right = 498.0
 offset_bottom = 104.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 554.0
+offset_top = 166.0
+offset_right = 594.0
+offset_bottom = 616.0
+texture = ExtResource("7_jw32o")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 518.0
+offset_top = 38.0
+offset_right = 568.0
+offset_bottom = 88.0
+texture_normal = ExtResource("8_50glp")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TextureButton2" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 592.0
+offset_top = 38.0
+offset_right = 642.0
+offset_bottom = 88.0
+texture_normal = ExtResource("9_vy5pj")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 482.0
+offset_top = 72.0
+offset_right = 677.0
+offset_bottom = 182.0
+texture = ExtResource("10_bmxlf")
+expand_mode = 1

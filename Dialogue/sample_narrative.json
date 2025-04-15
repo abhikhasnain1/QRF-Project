@@ -1,113 +1,118 @@
 {
   "start": {
-	"text_p1": "You wake up on a rusted bench in an empty train car. It's dark, but not silent.",
-	"text_p2": "You sit across from your partner, still drowsy. The train sways gently, and your ears ring.",
+	"text_p1": "Your eyes snap open in a dimly lit capsule. Soft humming resonates from the walls around you.",
+	"text_p2": "Your partner stirs nearby, their breathing shallow and rapid.",
 	"choices_p1": [
-  { "text": "Take the flashlight", "next": "flashlight_branch", "triggers": ["lock_out_choice:Take the flashlight"] },
-  { "text": "Keep the map", "next": "map_branch", "triggers": ["lock_out_choice:Keep the map"] },
-  { "text": "Open the hatch", "next": "hatch_branch", "triggers": ["lock_out_choice:Open the hatch"] }
-], "choices_p2": [
-  { "text": "Take the flashlight", "next": "flashlight_branch", "triggers": ["lock_out_choice:Take the flashlight"] },
-  { "text": "Keep the map", "next": "map_branch", "triggers": ["lock_out_choice:Keep the map"] },
-  { "text": "Open the hatch", "next": "hatch_branch", "triggers": ["lock_out_choice:Open the hatch"] }
-]
-  },
-
-  "look_window": {
-	"text_p1": "You press your face to the fogged glass. Tunnels race by — graffiti flashes in the dark.",
-	"text_p2": "Your partner leans forward, peering outside.",
-	"choices_p1": [
-	  { "text": "Try to open the window", "next": "open_window" },
-	  { "text": "Sit back quietly", "next": "sit_back" }
-	]
-	, "sync_point": true
-  },
-
-  "speak_partner": {
-	"text_p1": "\"Do you remember how we got here?\" you ask.",
-	"text_p2": "Your partner blinks. \"Not really. You okay?\"",
-	"choices_p1": [
-	  { "text": "Lie", "next": "lie_response" },
-	  { "text": "Tell the truth", "next": "truth_response" }
-	]
-  },
-
-  "stand_up": {
-	"text_p2": "You stand and nearly lose your balance. The floor is vibrating.",
-	"text_p1": "You hear your partner stumble and steady themselves.",
+	  { "text": "Activate console", "next": "console_activated", "triggers": ["lock_out_choice:Activate console"] },
+	  { "text": "Inspect surroundings", "next": "inspect_surroundings" }
+	],
 	"choices_p2": [
-	  { "text": "Move toward the door", "next": "approach_door" },
-	  { "text": "Sit back down", "next": "sit_down" }
+	  { "text": "Call out to partner", "next": "call_partner" },
+	  { "text": "Check status monitor", "next": "check_monitor" }
 	]
   },
 
-  "check_bag": {
-	"text_p2": "You unzip your backpack. Inside: a half-used notebook, a train ticket, and a brass key.",
-	"choices_p2": [
-	  { "text": "Read the notebook", "next": "read_notebook" },
-	  { "text": "Inspect the key", "next": "inspect_key" }
-	]
-  },
-
-  "open_window": {
-	"text_p1": "The latch is stuck. You grunt quietly as you try to force it.",
+  "console_activated": {
+	"text_p1": "A holographic interface flickers to life, displaying a cryptic countdown: 12 minutes remain.",
 	"choices_p1": [
-	  { "text": "Keep trying", "next": "window_snaps" },
-	  { "text": "Give up", "next": "sit_back" }
+	  { "text": "Inform partner", "next": "inform_partner" },
+	  { "text": "Analyze countdown", "next": "analyze_countdown" }
 	]
   },
 
-  "sit_back": {
-	"text_p1": "You rest your head back against the seat. It still smells faintly of smoke.",
+  "inspect_surroundings": {
+	"text_p1": "You find walls etched with strange symbols, pulsating faintly.",
 	"choices_p1": [
-	  { "text": "Close your eyes", "next": "fade_to_black" },
-	  { "text": "Watch your partner", "next": "watch_partner" }
+	  { "text": "Touch symbols", "next": "symbols_react" },
+	  { "text": "Memorize symbols", "next": "memorize_symbols" }
 	]
   },
 
-  "lie_response": {
-	"text_p1": "\"Yeah. I’m fine.\" You force a smile.",
+  "call_partner": {
+	"text_p2": "Your voice jolts your partner awake. They glance around, disoriented.",
+	"choices_p2": [
+	  { "text": "Reassure partner", "next": "reassure_partner" },
+	  { "text": "Ask about memory", "next": "memory_check" }
+	]
+  },
+
+  "check_monitor": {
+	"text_p2": "The status monitor displays vital signs—yours stable, partner’s erratic.",
+	"choices_p2": [
+	  { "text": "Administer medical aid", "next": "medical_aid" },
+	  { "text": "Ignore and proceed", "next": "proceed_cautiously" }
+	]
+  },
+
+  "inform_partner": {
+	"text_p1": "You quickly explain the situation. Your partner's eyes widen, anxiety evident.",
 	"choices_p1": [
-	  { "text": "Change the subject", "next": "change_subject" }
-	]
+	  { "text": "Plan escape", "next": "plan_escape" }
+	],
+	"sync_point": true
   },
 
-  "truth_response": {
-	"text_p1": "\"I remember the alley. The red door. That’s it.\"",
+  "analyze_countdown": {
+	"text_p1": "Analyzing the countdown reveals it's linked to oxygen depletion.",
 	"choices_p1": [
-	  { "text": "Ask if they remember", "next": "ask_partner" }
+	  { "text": "Search for oxygen tanks", "next": "find_tanks" }
 	]
   },
 
-  "approach_door": {
-	"text_p2": "The door at the end of the car is locked. But it rattles.",
-	"choices_p2": [
-	  { "text": "Knock", "next": "knock_door" },
-	  { "text": "Return to seat", "next": "sit_down" }
+  "symbols_react": {
+	"text_p1": "Symbols illuminate brightly, causing a hidden panel to open.",
+	"choices_p1": [
+	  { "text": "Explore panel", "next": "panel_exploration" }
 	]
   },
 
-  "sit_down": {
-	"text_p2": "You exhale and return to your seat, eyeing your partner closely.",
-	"choices_p2": [
-	  { "text": "Say something", "next": "say_something" }
+  "memorize_symbols": {
+	"text_p1": "You commit the symbols to memory, sensing their importance.",
+	"choices_p1": [
+	  { "text": "Continue", "next": "console_activated" }
 	]
   },
 
-  "read_notebook": {
-	"text_p2": "Pages are torn and smudged, but one phrase repeats: *Don't trust the conductor.*",
+  "reassure_partner": {
+	"text_p2": "Your partner nods, taking deep breaths to calm down.",
 	"choices_p2": [
-	  { "text": "Show partner", "next": "share_warning" },
-	  { "text": "Hide notebook", "next": "keep_secret" }
+	  { "text": "Continue", "next": "check_monitor" }
 	]
   },
 
-  "inspect_key": {
-	"text_p2": "The key is heavy and cold. Stamped on it: `BAY 3 - S`.",
+  "memory_check": {
+	"text_p2": "Your partner shakes their head, memory foggy.",
 	"choices_p2": [
-	  { "text": "Keep it in hand", "next": "hold_key" },
-	  { "text": "Pocket it", "next": "pocket_key" }
+	  { "text": "Investigate together", "next": "inspect_surroundings" }
+	]
+  },
+
+  "medical_aid": {
+	"text_p2": "You stabilize your partner's vitals, their condition improves noticeably.",
+	"choices_p2": [
+	  { "text": "Continue", "next": "call_partner" }
+	]
+  },
+
+  "proceed_cautiously": {
+	"text_p2": "Ignoring your partner’s distress, you cautiously approach a sealed door.",
+	"choices_p2": [
+	  { "text": "Open door", "next": "door_opens" },
+	  { "text": "Look for alternate routes", "next": "find_alternatives" }
+	]
+  },
+
+  "plan_escape": {
+	"text_p1": "Together, you formulate a plan to reach the emergency shuttle.",
+	"choices_p1": [
+	  { "text": "Execute plan", "next": "execute_escape" }
+	]
+  },
+
+  "find_tanks": {
+	"text_p1": "You locate emergency oxygen tanks concealed under the flooring.",
+	"choices_p1": [
+	  { "text": "Share oxygen", "next": "share_oxygen" }
 	]
   }
-
 }

@@ -1,19 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfkb2ynjj34r3"]
+[gd_scene load_steps=5 format=3 uid="uid://dfkb2ynjj34r3"]
 
 [ext_resource type="Script" uid="uid://c5gcl2oe8oya4" path="res://Scripts/PlayerUIPanel.gd" id="1_0lxf1"]
 [ext_resource type="PackedScene" uid="uid://csm3owwvjtjpl" path="res://Scenes/ChoiceButton.tscn" id="2_3tquo"]
+[ext_resource type="FontFile" uid="uid://bsopn8i8un0ge" path="res://Assets/Fonts/JetBrains_Mono,Lora,PT_Serif/PT_Serif/PTSerif-Regular.ttf" id="2_hqfgv"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hqfgv"]
-
-[sub_resource type="SystemFont" id="SystemFont_hqfgv"]
-font_names = PackedStringArray("SimSun")
-subpixel_positioning = 0
-
-[sub_resource type="FontVariation" id="FontVariation_eavkd"]
-base_font = SubResource("SystemFont_hqfgv")
-variation_opentype = {
-2003265652: 400
-}
 
 [node name="PlayerUIPanel" type="Control"]
 custom_minimum_size = Vector2(500, 600)
@@ -45,7 +36,7 @@ offset_right = 357.0
 offset_bottom = 608.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 10
+theme_override_constants/separation = 5
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" groups=["ui_interactable"]]
 custom_minimum_size = Vector2(300, 200)
@@ -54,19 +45,25 @@ layout_mode = 2
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/ScrollContainer" groups=["ui_interactable"]]
 custom_minimum_size = Vector2(300, 200)
 layout_mode = 2
-theme_override_fonts/normal_font = SubResource("FontVariation_eavkd")
+theme_override_colors/default_color = Color(0.051971, 0.051971, 0.051971, 1)
+theme_override_fonts/normal_font = ExtResource("2_hqfgv")
+theme_override_font_sizes/normal_font_size = 20
 
 [node name="CurrentTextLabel" type="RichTextLabel" parent="VBoxContainer" groups=["ui_interactable"]]
 clip_contents = false
-custom_minimum_size = Vector2(300, 150)
+custom_minimum_size = Vector2(300, 200)
 layout_mode = 2
-size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.051971, 0.051971, 0.051971, 1)
+theme_override_fonts/normal_font = ExtResource("2_hqfgv")
+theme_override_font_sizes/normal_font_size = 20
 
 [node name="ChoiceContainer" type="VBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_constants/margin_right = 150
@@ -80,10 +77,10 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 1
 size_flags_vertical = 3
-choice_text = ""
 owner_player_id = -1
 
 [node name="WaitingLabel" type="Label" parent="VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 text = "Waiting for player...."

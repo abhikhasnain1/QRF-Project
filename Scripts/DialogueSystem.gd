@@ -33,19 +33,19 @@ func _ready():
 	call_deferred("load_node", "start", 0)
 	call_deferred("load_node", "start", 1)
 	# Connect player UI signals
-	player_ui_1.continue_requested.connect(_on_continue_requested.bind(0))
-	player_ui_2.continue_requested.connect(_on_continue_requested.bind(1))
+	#player_ui_1.continue_requested.connect(_on_continue_requested.bind(0))
+	#player_ui_2.continue_requested.connect(_on_continue_requested.bind(1))
 	player_ui_1.choice_selected.connect(_on_choice_selected)
 	player_ui_2.choice_selected.connect(_on_choice_selected)
 
-func _on_continue_requested(player_id: int):
-	if waiting_for_sync:
-		confirmed_players[player_id] = true
-		if confirmed_players.size() == 2:
-			waiting_for_sync = false
-			load_node(_next_node_id, player_id)
-	else:
-		load_node(_next_node_id, player_id)
+#func _on_continue_requested(player_id: int):
+	#if waiting_for_sync:
+		#confirmed_players[player_id] = true
+		#if confirmed_players.size() == 2:
+			#waiting_for_sync = false
+			#load_node(_next_node_id, player_id)
+	#else:
+		#load_node(_next_node_id, player_id)
 
 func _on_choice_selected(next_node_id: String, player_id: int, triggers: Array):
 	#var node = dialogue_data.get(next_node_id, {})
