@@ -6,6 +6,7 @@ extends Sprite2D
 @export var region_node_path: NodePath = ".." # Link to the Panel/region this cursor is limited to
 @export var interact_action: String = "interact_p1"
 @export var scroll_axis: int = JOY_AXIS_RIGHT_Y
+var last_hovered: Control = null
 
 func _ready():
 	var region_node = get_node(region_node_path) as Control
@@ -39,8 +40,15 @@ func _handle_scroll():
 
 func _handle_hover():
 	var under = get_control_under_cursor()
+	#if under and under.has_method("on_cursor_hover"):
+	if last_hovered and last_hovered != under and last_hovered.has_method("stop_hover"):
+		last_hovered.stop_hover(player_id)
+
+	# Enter hover
 	if under and under.has_method("on_cursor_hover"):
 		under.on_cursor_hover(self)
+		last_hovered = under
+		
 		
 func get_control_under_cursor() -> Control:
 	#var ui_pos = get_viewport().get_mouse_position()  # use screen-space position

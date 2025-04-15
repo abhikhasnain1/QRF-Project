@@ -19,6 +19,7 @@ func on_cursor_hover(cursor):
 func on_cursor_interact(cursor):
 	if _is_owned_by(cursor.player_id):
 		emit_signal("interacted", cursor)
+		
 	else:
 		emit_signal("denied", cursor)
 

@@ -28,7 +28,9 @@ func _ready():
 
 func on_cursor_hover(cursor):
 	if _is_owned_by(cursor.player_id):
-		play_effect(ButtonEffect.HOVER)
+		if not hovering_players.has(cursor.player_id):
+			hovering_players.append(cursor.player_id)
+			play_effect(ButtonEffect.HOVER)
 		#anim.play("hover")
 	else:
 		play_effect(ButtonEffect.DENY)
@@ -41,6 +43,8 @@ func on_cursor_interact(cursor):
 		#anim.play("chosen")
 		print("✅ Choice pressed:", choice_id, "by player", cursor.player_id, triggers)
 		print(triggers)
+		hovering_players.clear()
+		play_effect(ButtonEffect.RESET)
 		emit_signal("chosen", choice_id, cursor.player_id, triggers)
 	else:
 		play_effect(ButtonEffect.DENY)
@@ -50,6 +54,12 @@ func play_hover_effect():
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector2(1.05, 1.05), 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
+func stop_hover(player_id: int):
+	if hovering_players.has(player_id):
+		hovering_players.erase(player_id)
+		if hovering_players.is_empty():
+			play_effect(ButtonEffect.RESET)
+			
 func play_reset_scale():
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector2.ONE, 0.1)
@@ -66,6 +76,7 @@ func play_disappear_and_free():
 	tween.tween_property(self, "scale", Vector2(0.8, 0.8), 0.2)
 	tween.tween_callback(func(): queue_free())
 	
+var hovering_players := []
 enum ButtonEffect { HOVER, RESET, DENY }
 
 
