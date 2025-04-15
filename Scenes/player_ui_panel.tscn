@@ -75,6 +75,7 @@ theme_override_constants/margin_right = 150
 layout_mode = 2
 size_flags_horizontal = 1
 size_flags_vertical = 3
+owner_player_id = -1
 
 [node name="WaitingLabel" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(300, 50)

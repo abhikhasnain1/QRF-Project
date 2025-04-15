@@ -16,11 +16,11 @@ When a Tweener is created with one of the tween_* methods, a chained method call
   "look": {
 	"text_p1": "You see shadows in the distance.",
 	"text_p2": "You tense up slightly.",
-	"sync_point": true
+	"sync_point": false
   },
   "quiet": {
 	"text_p1": "You remain silent.",
 	"text_p2": "The silence grows heavier.",
-	"sync_point": true
+	"sync_point": false
   }
 }

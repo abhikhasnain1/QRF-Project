@@ -39,6 +39,8 @@ func show_choices(choices: Array) -> void:
 			choice_button.choice_id = choice_data.next
 			choice_button.owner_player_id = player_id
 			choice_button.connect("chosen", Callable(self, "_on_choice_selected"))
+			var connected = choice_button.is_connected("chosen", Callable(self, "_on_choice_selected"))
+			print("🔌 Connected to ChoiceButton?", connected)
 			choice_container.add_child(choice_button)
 			
 			print("👀 Spawned choice:", choice_data.text)
@@ -52,9 +54,12 @@ func _on_continue_pressed() -> void:
 	emit_signal("continue_requested")
 
 func _on_choice_selected(choice_id: String, selected_player_id: int) -> void:
+	
 	# Confirm the right player made the choice
 	if selected_player_id != player_id:
+		print(selected_player_id, " is not equal to ", player_id )
 		return
+	print("📤 Emitting choice to DialogueSystem:", choice_id)
 	emit_signal("choice_selected", choice_id, player_id)
 
 func set_waiting_for_sync(waiting: bool) -> void:

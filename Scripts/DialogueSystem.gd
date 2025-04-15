@@ -3,7 +3,7 @@ extends Node
 class_name DialogueSystem
 
 var dialogue_data: Dictionary = {}
-var current_node_id: String = "start"
+var current_node_id: String = ""
 var _next_node_id: String = ""
 var waiting_for_sync: bool = false
 var confirmed_players: Dictionary = {}
@@ -38,6 +38,7 @@ func _on_continue_requested(player_id: int):
 		load_node(_next_node_id)
 
 func _on_choice_selected(next_node_id: String, player_id: int):
+	print("📥 DialogueSystem received choice:", next_node_id)
 	load_node(next_node_id)
 	
 func load_dialogue(json_path: String):

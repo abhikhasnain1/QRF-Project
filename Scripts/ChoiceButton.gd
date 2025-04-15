@@ -35,11 +35,12 @@ func on_cursor_hover(cursor):
 func on_cursor_interact(cursor):
 	if _is_owned_by(cursor.player_id):
 		play_effect(ButtonEffect.RESET)
-		anim.play("chosen")
-		emit_signal("chosen", choice_id, cursor.player_id, triggers)
+		#anim.play("chosen")
+		print("✅ Choice pressed:", choice_id, "by player", cursor.player_id)
+		emit_signal("chosen", choice_id, cursor.player_id)
 	else:
 		play_effect(ButtonEffect.DENY)
-		anim.play("denied")
+		#anim.play("denied")
 
 func play_hover_effect():
 	var tween = create_tween()
