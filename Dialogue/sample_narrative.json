@@ -3,13 +3,14 @@
 	"text_p1": "You wake up on a rusted bench in an empty train car. It's dark, but not silent.",
 	"text_p2": "You sit across from your partner, still drowsy. The train sways gently, and your ears ring.",
 	"choices_p1": [
-	  { "text": "Look out the window", "next": "look_window" },
-	  { "text": "Speak to your partner", "next": "speak_partner" }
-	],
-	"choices_p2": [
-	  { "text": "Stand up", "next": "stand_up" },
-	  { "text": "Inspect your belongings", "next": "check_bag" }
-	]
+  { "text": "Take the flashlight", "next": "flashlight_branch", "triggers": ["lock_out_choice:Take the flashlight"] },
+  { "text": "Keep the map", "next": "map_branch", "triggers": ["lock_out_choice:Keep the map"] },
+  { "text": "Open the hatch", "next": "hatch_branch", "triggers": ["lock_out_choice:Open the hatch"] }
+], "choices_p2": [
+  { "text": "Take the flashlight", "next": "flashlight_branch", "triggers": ["lock_out_choice:Take the flashlight"] },
+  { "text": "Keep the map", "next": "map_branch", "triggers": ["lock_out_choice:Keep the map"] },
+  { "text": "Open the hatch", "next": "hatch_branch", "triggers": ["lock_out_choice:Open the hatch"] }
+]
   },
 
   "look_window": {

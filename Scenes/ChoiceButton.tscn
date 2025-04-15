@@ -24,6 +24,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_6ukqj")
+choice_text = null
 owner_player_id = 0
 
 [node name="Container" type="PanelContainer" parent="."]

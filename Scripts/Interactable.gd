@@ -1,8 +1,10 @@
 # Interactable.gd
-extends Control
 class_name Interactable
+extends Control
+
 
 @export var owner_player_id: int = -1  # -1 = shared
+@export var triggers: Array = []
 
 signal hovered(cursor)
 signal interacted(cursor)

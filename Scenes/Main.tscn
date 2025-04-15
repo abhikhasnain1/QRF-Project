@@ -45,7 +45,7 @@ interact_action = "interact_p2"
 [node name="DialogueSystem" type="Node" parent="."]
 script = ExtResource("3_rgh2o")
 
-[node name="TriggerDispatcher" type="Node" parent="."]
+[node name="TriggerDispatcher" type="Node" parent="DialogueSystem"]
 script = ExtResource("4_pbw6q")
 
 [node name="SharedControlPanel" parent="." instance=ExtResource("5_pbw6q")]

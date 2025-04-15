@@ -80,6 +80,7 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 1
 size_flags_vertical = 3
+choice_text = null
 owner_player_id = -1
 
 [node name="WaitingLabel" type="Label" parent="VBoxContainer"]

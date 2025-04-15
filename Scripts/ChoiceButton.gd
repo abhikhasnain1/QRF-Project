@@ -1,16 +1,15 @@
 # ChoiceButton.gd
 @tool
-
-extends "res://Scripts/Interactable.gd"
 class_name ChoiceButton
+extends "res://Scripts/Interactable.gd"
+
 
 
 # Inherits Interactable behavior
 @export var choice_id: String = ""
-@export var triggers: Array[String] = []
+@export var choice_text: String = ""
 
-
-signal chosen(choice_id: String, player_id: int)
+signal chosen(choice_id: String, player_id: int, triggers: Array)
 
 @onready var label: Label = $Container/MarginContainer/Label
 @onready var anim: AnimationPlayer = $AnimationPlayer
@@ -18,9 +17,13 @@ signal chosen(choice_id: String, player_id: int)
 func set_text(text: String) -> void:
 	$Container/MarginContainer/Label.text = text
 
+func _init():
+	print("✅ ChoiceButton.gd script is initializing.")
+	
 func _ready():
 	add_to_group("ui_interactable")
 	print("✅ Added to group:", self.name)
+	print(triggers)
 
 
 func on_cursor_hover(cursor):
@@ -36,8 +39,9 @@ func on_cursor_interact(cursor):
 	if _is_owned_by(cursor.player_id):
 		play_effect(ButtonEffect.RESET)
 		#anim.play("chosen")
-		print("✅ Choice pressed:", choice_id, "by player", cursor.player_id)
-		emit_signal("chosen", choice_id, cursor.player_id)
+		print("✅ Choice pressed:", choice_id, "by player", cursor.player_id, triggers)
+		print(triggers)
+		emit_signal("chosen", choice_id, cursor.player_id, triggers)
 	else:
 		play_effect(ButtonEffect.DENY)
 		#anim.play("denied")
@@ -55,8 +59,15 @@ func play_deny_shake():
 	tween.tween_property(self, "position:x", position.x - 10, 0.05)
 	tween.tween_property(self, "position:x", position.x + 10, 0.05)
 	tween.tween_property(self, "position:x", position.x, 0.05)
+
+func play_disappear_and_free():
+	var tween = create_tween()
+	tween.tween_property(self, "modulate:a", 0.0, 0.2)
+	tween.tween_property(self, "scale", Vector2(0.8, 0.8), 0.2)
+	tween.tween_callback(func(): queue_free())
 	
 enum ButtonEffect { HOVER, RESET, DENY }
+
 
 func play_effect(effect: ButtonEffect):
 	match effect:

@@ -2,6 +2,7 @@
 extends Node
 class_name DialogueSystem
 
+
 var dialogue_data: Dictionary = {}
 #var current_node_id: String = ""
 var _next_node_id: String = ""
@@ -19,10 +20,14 @@ signal trigger_fired(trigger_name)
 @export_node_path var player_ui_2_path: NodePath = "../PlayerUIPanel2"
 @onready var player_ui_1 = get_node(player_ui_1_path)
 @onready var player_ui_2 = get_node(player_ui_2_path)
-@export var trigger_dispatcher_path: NodePath = "../TriggerDispatcher"
+@export var trigger_dispatcher_path: NodePath = "../DialogueSystem/TriggerDispatcher"
 @onready var trigger_dispatcher = get_node(trigger_dispatcher_path)
 
 func _ready():
+	print("🧠 Trigger Dispatcher node?", trigger_dispatcher)
+	trigger_dispatcher.player_ui_1 = player_ui_1
+	trigger_dispatcher.player_ui_2 = player_ui_2
+
 	load_dialogue("res://Dialogue/sample_narrative.json")
 	#call_deferred("load_node", "start")
 	call_deferred("load_node", "start", 0)
@@ -42,9 +47,18 @@ func _on_continue_requested(player_id: int):
 	else:
 		load_node(_next_node_id, player_id)
 
-func _on_choice_selected(next_node_id: String, player_id: int):
+func _on_choice_selected(next_node_id: String, player_id: int, triggers: Array):
+	#var node = dialogue_data.get(next_node_id, {})
+	
 	load_node(next_node_id, player_id)
 	print("📥 Player", player_id, "chose", next_node_id)
+	
+	for trigger in triggers:
+		print("📦 Dispatching trigger from choice:", trigger)
+		trigger_dispatcher.dispatch(trigger, player_id)
+		
+		
+	
 	
 func load_dialogue(json_path: String):
 	var file = FileAccess.open(json_path, FileAccess.READ)
@@ -52,6 +66,7 @@ func load_dialogue(json_path: String):
 	file.close()
 
 func load_node(node_id: String, player_id: int):
+	
 	if player_id != -1:
 		current_node_ids[player_id] = node_id
 
@@ -88,6 +103,7 @@ func load_node(node_id: String, player_id: int):
 	
 	# Triggers
 	for trigger in node.get("triggers", []):
+		print(trigger)
 		trigger_dispatcher.dispatch(trigger)
 		emit_signal("trigger_fired", trigger)
 

@@ -66,6 +66,7 @@ func get_control_under_cursor() -> Control:
 
 func _handle_interaction():
 	if Input.is_action_just_pressed(interact_action):
+		
 		print(player_id, interact_action)
 		var under = get_control_under_cursor()
 		if under and under.has_method("on_cursor_interact"):
