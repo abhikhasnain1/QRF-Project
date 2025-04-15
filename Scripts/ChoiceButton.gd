@@ -45,6 +45,7 @@ func on_cursor_interact(cursor):
 		print(triggers)
 		hovering_players.clear()
 		play_effect(ButtonEffect.RESET)
+		play_effect(ButtonEffect.CHOSEN)
 		emit_signal("chosen", choice_id, cursor.player_id, triggers)
 	else:
 		play_effect(ButtonEffect.DENY)
@@ -76,12 +77,29 @@ func play_disappear_and_free():
 	tween.tween_property(self, "scale", Vector2(0.8, 0.8), 0.2)
 	tween.tween_callback(func(): queue_free())
 	
+func play_chosen():
+	var t = create_tween()
+	t.set_parallel()
+	t.tween_property(self, "scale", Vector2(1.15, 1.15), 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	#t.tween_property(self, "modulate:a", 0.0, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+
+	# Optional: queue_free after fade
+	#t.tween_callback(func(): queue_free())
+	
 var hovering_players := []
-enum ButtonEffect { HOVER, RESET, DENY }
+enum ButtonEffect { HOVER, RESET, DENY, CHOSEN}
 
 
 func play_effect(effect: ButtonEffect):
 	match effect:
-		ButtonEffect.HOVER: play_hover_effect()
+		ButtonEffect.HOVER: 
+			if $AudioClick and not $AudioClick.playing:
+				$AudioClick.play()
+			play_hover_effect()
 		ButtonEffect.RESET: play_reset_scale()
 		ButtonEffect.DENY: play_deny_shake()
+		ButtonEffect.CHOSEN:
+			if $AudioClick and not $AudioClick.playing:
+				$AudioClick.play()
+			play_hover_effect()
+			play_chosen()
