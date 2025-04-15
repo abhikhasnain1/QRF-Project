@@ -16,7 +16,7 @@ signal choice_selected(next_node_id: String, player_id: int)
 
 func _ready():
 	
-	continue_button.chosen.connect(_on_continue_pressed)
+	continue_button.pressed.connect(_on_continue_pressed)
 	waiting_label.visible = false
 
 func set_current_text(new_text: String) -> void:

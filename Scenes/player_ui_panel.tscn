@@ -71,7 +71,12 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_constants/margin_right = 150
 
-[node name="ContinueButton" parent="VBoxContainer/MarginContainer" instance=ExtResource("2_3tquo")]
+[node name="ContinueButton" type="Button" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Continue"
+
+[node name="NotContinueButton" parent="VBoxContainer/MarginContainer" instance=ExtResource("2_3tquo")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 1
 size_flags_vertical = 3

@@ -14,7 +14,7 @@ func _ready():
 	global_position = region_rect.position + region_rect.size * 0.5
 
 func _process(delta):
-	var group_members = get_tree().get_nodes_in_group("ui_interactable")
+	var _group_members = get_tree().get_nodes_in_group("ui_interactable")
 	#print("Found interactables:", group_members.size())
 	_move_cursor(delta)
 	_handle_scroll()
@@ -58,7 +58,7 @@ func get_control_under_cursor() -> Control:
 		if node is Control and node.get_global_rect().has_point(global_position):
 			#print("Checking:", node.name, node.get_global_rect(), "vs cursor:", global_position)
 			return node
-			print(node)
+			#print(node)
 	return null
 	
 	
