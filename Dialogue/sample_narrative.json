@@ -3,7 +3,7 @@
 	"text_p1": "Your eyes snap open in a dimly lit capsule. Soft humming resonates from the walls around you.",
 	"text_p2": "Your partner stirs nearby, their breathing shallow and rapid.",
 	"choices_p1": [
-	  { "text": "Activate console", "next": "console_activated", "triggers": ["lock_out_choice:Activate console"] },
+	  { "text": "Activate console", "next": "console_activated", "triggers": ["lock_out_choice:Call out to partner"] },
 	  { "text": "Inspect surroundings", "next": "inspect_surroundings" }
 	],
 	"choices_p2": [

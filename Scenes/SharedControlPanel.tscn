@@ -18,12 +18,9 @@ theme_override_constants/separation = 100
 
 [node name="MapButton" parent="VBoxContainer" instance=ExtResource("1_ba6po")]
 layout_mode = 2
-choice_text = ""
 
 [node name="SettingsButton" parent="VBoxContainer" instance=ExtResource("1_ba6po")]
 layout_mode = 2
-choice_text = ""
 
 [node name="InventoryButton" parent="VBoxContainer" instance=ExtResource("1_ba6po")]
 layout_mode = 2
-choice_text = ""
